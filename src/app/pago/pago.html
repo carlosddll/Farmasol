@@ -1,0 +1,62 @@
+<div class="container py-5">
+  <h2 class="mb-4">Pasarela de Pagos</h2>
+
+  <div class="row">
+    <!-- Formulario de pago -->
+    <div class="col-md-7">
+      <form (ngSubmit)="pagar()" #formPago="ngForm">
+
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input type="text" id="nombre" class="form-control" required [(ngModel)]="pago.nombre" name="nombre">
+        </div>
+
+        <div class="mb-3">
+          <label for="numero" class="form-label">Número de tarjeta</label>
+          <input type="text" id="numero" class="form-control" required maxlength="16"
+                 [(ngModel)]="pago.tarjeta" name="tarjeta">
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="expira" class="form-label">Fecha de expiración</label>
+            <input type="text" id="expira" class="form-control" placeholder="MM/AA"
+                   required [(ngModel)]="pago.expiracion" name="expiracion">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="password" id="cvv" class="form-control" required maxlength="4"
+                   [(ngModel)]="pago.cvv" name="cvv">
+          </div>
+        </div>
+
+        <div class="form-check mb-4">
+          <input type="checkbox" class="form-check-input" id="guardar" [(ngModel)]="pago.guardar" name="guardar">
+          <label for="guardar" class="form-check-label">Guardar esta tarjeta para futuras compras</label>
+        </div>
+
+        <button class="btn btn-success w-100" [disabled]="formPago.invalid">
+          <i class="bi bi-credit-card-fill me-2"></i> Pagar S/ {{ total | number: '1.2-2' }}
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Resumen de productos -->
+    <div class="col-md-5 mt-4 mt-md-0">
+      <h5>Resumen de compra</h5>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let item of carrito">
+          {{ item.nombre }} (x{{ item.cantidad }})
+          <span>S/ {{ (item.precio * item.cantidad) | number: '1.2-2' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between fw-bold">
+          Total
+          <span>S/ {{ total | number: '1.2-2' }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
