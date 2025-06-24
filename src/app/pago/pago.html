@@ -45,45 +45,18 @@
 
     <!-- Resumen de productos -->
     <div class="col-md-5 mt-4 mt-md-0">
-      <div class="card shadow-sm">
-        <div class="card-header bg-light fw-bold">Resumen de pedido</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex align-items-start gap-2" *ngFor="let item of carrito">
-            <img [src]="'/img/' + item.producto.imagen" alt="{{ item.producto.nombre }}" width="48" height="48"
-                class="rounded border" style="object-fit: cover;">
-            
-            <div class="flex-grow-1" style="min-width: 0;">
-              <div class="fw-semibold text-truncate" style="max-width: 200px;">
-                {{ item.producto.nombre }}
-              </div>
-              <small class="text-muted">Cantidad: {{ item.cantidad }}</small>
-            </div>
-
-            <span class="fw-semibold">S/ {{ (item.producto.precio * item.cantidad) | number: '1.2-2' }}</span>
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between fw-bold">
-            Total
-            <span>S/ {{ total | number: '1.2-2' }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- <div class="col-md-5 mt-4 mt-md-0">
-      <h5>Resumen de pedido</h5>
+      <h5>Resumen de compra</h5>
       <ul class="list-group mb-3">
-        
         <li class="list-group-item d-flex justify-content-between align-items-center"
             *ngFor="let item of carrito">
-          {{ item.producto.precio}} (x{{ item.cantidad }})
-          <span>S/ {{ (item.producto.precio * item.cantidad) | number: '1.2-2' }}</span>
+          {{ item.nombre }} (x{{ item.cantidad }})
+          <span>S/ {{ (item.precio * item.cantidad) | number: '1.2-2' }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between fw-bold">
           Total
           <span>S/ {{ total | number: '1.2-2' }}</span>
         </li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </div>
